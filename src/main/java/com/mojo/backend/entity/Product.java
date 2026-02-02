@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Restaurant {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,10 +13,14 @@ public class Restaurant {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    private User owner;
+    @Column(nullable = false)
+    private Double price;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private java.util.List<Product> products;
+    private String description;
+
+    private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
 }
